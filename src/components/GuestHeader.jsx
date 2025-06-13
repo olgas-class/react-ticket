@@ -12,7 +12,7 @@ const GuestHeader = () => {
     },
     {
       title: "Apri ticket",
-      url: "/new-ticket",
+      url: "/tickets/create",
     },
   ];
 
@@ -42,6 +42,7 @@ const GuestHeader = () => {
                     className="nav-link"
                     aria-current="page"
                     to={curLink.url}
+                    end
                   >
                     {curLink.title}
                   </NavLink>

@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import TicketForm from "../components/TicketForm";
 import Alert from "../components/Alert";
+import { useNavigate } from "react-router-dom";
 
 const CreateTicket = () => {
   const initialFormData = {
@@ -14,6 +15,7 @@ const CreateTicket = () => {
 
   const [formData, setFormData] = useState(initialFormData);
   const [showAlert, setShowAlert] = useState(false);
+  const navigate = useNavigate();
 
   const handleChange = (event) => {
     const { name, value, checked, type } = event.target;
@@ -27,11 +29,12 @@ const CreateTicket = () => {
       .post("https://67c5b4f3351c081993fb1ab6.mockapi.io/api/tickets", formData)
       .then((resp) => {
         if (resp.data.id) {
-          setShowAlert(true);
-          setFormData(initialFormData);
-          setTimeout(() => {
-            setShowAlert(false);
-          }, 5000);
+          // setShowAlert(true);
+          // setFormData(initialFormData);
+          // setTimeout(() => {
+          //   setShowAlert(false);
+          // }, 5000);
+          navigate(`/tickets/${resp.data.id}`);
         }
       });
   };

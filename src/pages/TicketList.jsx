@@ -1,11 +1,14 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const TicketList = () => {
   const [tickets, setTickets] = useState([]);
   useEffect(() => {
     axios
-      .get("https://67c5b4f3351c081993fb1ab6.mockapi.io/api/tickets")
+      .get(
+        "https://67c5b4f3351c081993fb1ab6.mockapi.io/api/tickets?page=1&limit=10"
+      )
       .then((resp) => {
         setTickets(resp.data);
       });
@@ -24,6 +27,7 @@ const TicketList = () => {
                     {curTicket.id} - {curTicket.name}
                   </h4>
                   <p>{curTicket.description}</p>
+                  <Link to={`/tickets/${curTicket.id}`}>Vedi dettagli</Link>
                 </div>
               </div>
             </div>
