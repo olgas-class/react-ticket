@@ -1,4 +1,5 @@
 import { NavLink } from "react-router-dom";
+import routes from "../routes/routes";
 
 const GuestHeader = () => {
   const navLinks = [
@@ -8,11 +9,15 @@ const GuestHeader = () => {
     },
     {
       title: "Lista Ticket",
-      url: "/tickets",
+      url: routes.tickets,
     },
     {
       title: "Apri ticket",
-      url: "/tickets/create",
+      url: `${routes.tickets}/${routes.ticketsCreate}`,
+    },
+    {
+      title: "Chi siamo",
+      url: routes.about,
     },
   ];
 

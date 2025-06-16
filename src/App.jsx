@@ -5,16 +5,19 @@ import TicketList from "./pages/TicketList";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ShowTicket from "./pages/ShowTicket";
 import Page404 from "./pages/Page404";
+import About from "./pages/About";
+import routes from "./routes/routes";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route element={<GuestLayout />}>
-          <Route path="/" element={<Home />} />
-          <Route path="/tickets">
+          <Route path={routes.home} element={<Home />} />
+          <Route path={routes.about} element={<About />} />
+          <Route path={routes.tickets}>
             <Route path="" element={<TicketList />} />
-            <Route path="create" element={<CreateTicket />} />
+            <Route path={routes.ticketsCreate} element={<CreateTicket />} />
             <Route path=":id" element={<ShowTicket />} />
           </Route>
           <Route path="*" element={<Page404 />} />
