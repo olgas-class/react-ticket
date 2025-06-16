@@ -7,23 +7,26 @@ import ShowTicket from "./pages/ShowTicket";
 import Page404 from "./pages/Page404";
 import About from "./pages/About";
 import routes from "./routes/routes";
+import { AlertProvider } from "./contexts/AlertContext";
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route element={<GuestLayout />}>
-          <Route path={routes.home} element={<Home />} />
-          <Route path={routes.about} element={<About />} />
-          <Route path={routes.tickets}>
-            <Route path="" element={<TicketList />} />
-            <Route path={routes.ticketsCreate} element={<CreateTicket />} />
-            <Route path=":id" element={<ShowTicket />} />
+    <AlertProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route element={<GuestLayout />}>
+            <Route path={routes.home} element={<Home />} />
+            <Route path={routes.about} element={<About />} />
+            <Route path={routes.tickets}>
+              <Route path="" element={<TicketList />} />
+              <Route path={routes.ticketsCreate} element={<CreateTicket />} />
+              <Route path=":id" element={<ShowTicket />} />
+            </Route>
+            <Route path="*" element={<Page404 />} />
           </Route>
-          <Route path="*" element={<Page404 />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+        </Routes>
+      </BrowserRouter>
+    </AlertProvider>
   );
 }
 

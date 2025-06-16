@@ -1,8 +1,8 @@
 import { useState } from "react";
 import axios from "axios";
 import TicketForm from "../components/TicketForm";
-import Alert from "../components/Alert";
 import { useNavigate } from "react-router-dom";
+import { useAlertContext } from "../contexts/AlertContext";
 
 const CreateTicket = () => {
   const initialFormData = {
@@ -14,8 +14,8 @@ const CreateTicket = () => {
   };
 
   const [formData, setFormData] = useState(initialFormData);
-  const [showAlert, setShowAlert] = useState(false);
   const navigate = useNavigate();
+  const { setShowAlert } = useAlertContext();
 
   const handleChange = (event) => {
     const { name, value, checked, type } = event.target;
@@ -34,6 +34,7 @@ const CreateTicket = () => {
           // setTimeout(() => {
           //   setShowAlert(false);
           // }, 5000);
+          setShowAlert(true);
           navigate(`/tickets/${resp.data.id}`);
         }
       });
@@ -47,14 +48,6 @@ const CreateTicket = () => {
             <div className="card">
               <div className="card-body">
                 <h3 className="text-center mb-3">Apri il ticket</h3>
-
-                {showAlert && (
-                  <Alert
-                    type="success"
-                    message="I dati sono stati inviati con successo"
-                  />
-                )}
-
                 <TicketForm
                   formData={formData}
                   handleChange={handleChange}

@@ -1,4 +1,4 @@
-const Alert = ({ type, message }) => {
+const Alert = ({ type = "success", message = "Tutt ok" }) => {
   return <div className={`alert alert-${type}`}>{message}</div>;
 };
 
