@@ -13,6 +13,8 @@ const CreateTicket = () => {
     description: "",
   };
 
+  const apiUrl = import.meta.env.VITE_API_URL;
+
   const [formData, setFormData] = useState(initialFormData);
   const navigate = useNavigate();
   const { setShowAlert } = useAlertContext();
@@ -25,19 +27,17 @@ const CreateTicket = () => {
   const sendData = (event) => {
     event.preventDefault();
     // console.log("Invio dati al server", formData);
-    axios
-      .post("https://67c5b4f3351c081993fb1ab6.mockapi.io/api/tickets", formData)
-      .then((resp) => {
-        if (resp.data.id) {
-          // setShowAlert(true);
-          // setFormData(initialFormData);
-          // setTimeout(() => {
-          //   setShowAlert(false);
-          // }, 5000);
-          setShowAlert(true);
-          navigate(`/tickets/${resp.data.id}`);
-        }
-      });
+    axios.post(apiUrl, formData).then((resp) => {
+      if (resp.data.id) {
+        // setShowAlert(true);
+        // setFormData(initialFormData);
+        // setTimeout(() => {
+        //   setShowAlert(false);
+        // }, 5000);
+        setShowAlert(true);
+        navigate(`/tickets/${resp.data.id}`);
+      }
+    });
   };
 
   return (

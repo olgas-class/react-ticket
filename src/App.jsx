@@ -8,8 +8,17 @@ import Page404 from "./pages/Page404";
 import About from "./pages/About";
 import routes from "./routes/routes";
 import { AlertProvider } from "./contexts/AlertContext";
+import { GlobalContext, GlobalContextProvider } from "./contexts/GlobalContext";
+import axios from "axios";
+import { useContext, useEffect } from "react";
 
 function App() {
+  const { getTickets } = useContext(GlobalContext);
+
+  useEffect(() => {
+    getTickets();
+  }, []);
+
   return (
     <AlertProvider>
       <BrowserRouter>
